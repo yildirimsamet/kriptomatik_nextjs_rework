@@ -6,5 +6,5 @@ dbConnect();
 export default async (req, res) => {
   const data = await News.find({}).countDocuments();
 
-  res.json({ count: data });
+  res.send({ count: data });
 };

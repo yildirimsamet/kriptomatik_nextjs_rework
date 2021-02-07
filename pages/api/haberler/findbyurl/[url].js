@@ -6,5 +6,5 @@ dbConnect();
 export default async (req, res) => {
   const data = await News.find({ url: req.query.url });
 
-  res.json(data);
+  res.send(data);
 };
