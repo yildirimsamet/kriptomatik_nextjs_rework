@@ -1,7 +1,8 @@
 import React from "react";
-
+import fetch from "isomorphic-unfetch";
 import Link from "next/link";
 import Head from "next/head";
+import { URL } from "../environment";
 
 function Home({ data }) {
   const allPosts = data;
@@ -124,9 +125,7 @@ function Home({ data }) {
   );
 }
 export const getServerSideProps = async () => {
-  const res = await fetch(
-    `${process.env.API_BASE_URL + "/api/haberler/firstfiveposts"}`
-  );
+  const res = await fetch(`${URL}/api/haberler/firstfiveposts`);
   const data = await res.json();
   return {
     props: {

@@ -3,6 +3,8 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Head from "next/head";
+import fetch from "isomorphic-unfetch";
+import { URL } from "../../../environment";
 
 const newsSpesificPage = ({ data, lastPageNumber }) => {
   const router = useRouter();
@@ -23,7 +25,7 @@ const newsSpesificPage = ({ data, lastPageNumber }) => {
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
         ></script>
         <title>Kriptomatik | Haberler</title>
-        <meta charset="UTF-8" />
+        <meta charSet="UTF-8" />
         <meta
           name="description"
           content="Kripto para haberleri son dakika.Güncel kripto para haberlerini takip edebilirsiniz."
@@ -68,34 +70,28 @@ const newsSpesificPage = ({ data, lastPageNumber }) => {
     </>
   );
 };
-export const getStaticPaths = async (ctx) => {
-  let pagesArray = [];
-  const res = await fetch(
-    `${process.env.API_BASE_URL + "/api/haberler/count"}`
-  );
-  const data = await res.json();
-  const lastPageNumber = (parseInt(data.count) / 10).toFixed(0);
-  for (let i = 0; i < lastPageNumber; i++) {
-    pagesArray.push(i);
-  }
-  return {
-    paths: pagesArray.map((page) => {
-      return {
-        params: { id: page.toString() },
-      };
-    }),
+// export const getStaticPaths = async (ctx) => {
+//   let pagesArray = [];
+//   const res = await fetch(`${URL}/api/haberler/count`);
+//   const data = await res.json();
+//   const lastPageNumber = (parseInt(data.count) / 10).toFixed(0);
+//   for (let i = 0; i < lastPageNumber; i++) {
+//     pagesArray.push(i);
+//   }
+//   return {
+//     paths: pagesArray.map((page) => {
+//       return {
+//         params: { id: page.toString() },
+//       };
+//     }),
 
-    fallback: false,
-  };
-};
-export const getStaticProps = async (ctx) => {
-  const res = await fetch(
-    `${process.env.API_BASE_URL + "/api/haberler/"}${(ctx.params.id - 1) * 10}`
-  );
+//     fallback: false,
+//   };
+// };
+export const getServerSideProps = async (ctx) => {
+  const res = await fetch(`${URL}/api/haberler/${(ctx.params.id - 1) * 10}`);
   const data = await res.json();
-  const res2 = await fetch(
-    `${process.env.API_BASE_URL + "/api/haberler/count"}`
-  );
+  const res2 = await fetch(`${URL}/api/haberler/count`);
   const count = await res2.json();
   const lastPageNumber = (parseInt(count.count) / 10).toFixed(0);
   return {
@@ -103,7 +99,6 @@ export const getStaticProps = async (ctx) => {
       data,
       lastPageNumber,
     },
-    revalidate: 100,
   };
 };
 

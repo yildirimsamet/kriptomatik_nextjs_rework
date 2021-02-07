@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Post from "../../components/Post/Post";
-
+import fetch from "isomorphic-unfetch";
+import { URL } from "../../environment";
 const newsSpesificUrl = ({ data }) => {
   return (
     <>
@@ -11,7 +12,7 @@ const newsSpesificUrl = ({ data }) => {
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
         ></script>
         <title>{data.title}</title>
-        <meta charset="UTF-8" />
+        <meta charSet="UTF-8" />
         <meta
           name="description"
           content={data.content.substring(0, 99) + "..."}
@@ -23,29 +24,31 @@ const newsSpesificUrl = ({ data }) => {
   );
 };
 
-export async function getStaticPaths() {
-  const res = await fetch(`${process.env.API_BASE_URL + "/api/haberler/urls"}`);
-  const urls = await res.json();
-  return {
-    paths: urls.map((url) => {
-      return {
-        params: { url: url.url },
-      };
-    }),
+// export async function getStaticPaths() {
+//   const res = await fetch(`${URL}/api/haberler/urls`);
+//   const urls = await res.json();
+//   return {
+//     paths: urls.map((url) => {
+//       return {
+//         params: { url: url.url },
+//       };
+//     }),
 
-    fallback: false,
-  };
-}
+//     fallback: false,
+//   };
+// }
 
-export const getStaticProps = async (ctx) => {
-  const res = await fetch(
-    `${process.env.API_BASE_URL + "/api/haberler/findbyurl/"}${ctx.params.url}`
-  );
-  const data = await res.json();
-  return {
-    props: { data: data[0] },
-    revalidate: 100,
-  };
+export const getServerSideProps = async (ctx) => {
+  const res = await fetch(`${URL}/api/haberler/findbyurl/${ctx.params.url}`);
+
+  if (res.status === 200) {
+    const data = await res.json();
+    return {
+      props: { data: data[0] },
+    };
+  } else {
+    return;
+  }
 };
 
 export default newsSpesificUrl;

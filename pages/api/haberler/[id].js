@@ -8,5 +8,5 @@ export default async (req, res) => {
     .sort({ id: -1 })
     .skip(parseInt(req.query.id))
     .limit(10);
-  res.send(data);
+  res.json(data);
 };

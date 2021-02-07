@@ -10,7 +10,7 @@ function WhatsCrypto() {
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
         ></script>
         <title>Kriptomatik | Nedir</title>
-        <meta charset="UTF-8" />
+        <meta charSet="UTF-8" />
         <meta
           name="description"
           content="Kripto para olarak adlandırılan bu sanal paralar nedir, güvenli mi, nasıl alınır, nasıl satılır, nasıl saklanır, bitcoin nedir ve altcoin nedir..."

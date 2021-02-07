@@ -1,6 +1,6 @@
 import Head from "next/head";
-import { useEffect } from "react";
 import CurrentRates from "../components/CurrentRates/CurrentRates";
+import fetch from "isomorphic-unfetch";
 
 const borsaAnlik = ({ coinss }) => {
   return (
@@ -12,7 +12,7 @@ const borsaAnlik = ({ coinss }) => {
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
         ></script>
         <title>Kriptomatik | Anlık Coinler</title>
-        <meta charset="UTF-8" />
+        <meta charSet="UTF-8" />
         <meta
           name="description"
           content="Canlı kripto para borsasını takip edebilirsiniz. Bitcoin, ethereum, ripple..."
