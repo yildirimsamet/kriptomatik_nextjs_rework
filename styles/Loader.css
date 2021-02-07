@@ -1,0 +1,11 @@
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.loader-text {
+  font-size: 32px;
+  color: var(--color2);
+  margin-top: 100px;
+}

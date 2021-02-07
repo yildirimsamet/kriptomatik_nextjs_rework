@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /haberler
+Allow: /borsa-anlik
+Allow: /kripto-para-nedir
+
+

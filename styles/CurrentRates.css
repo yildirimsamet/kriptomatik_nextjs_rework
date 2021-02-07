@@ -1,0 +1,136 @@
+#current-rates {
+  width: 1140px;
+  margin: 0 auto;
+  position: relative;
+}
+.current-rates-sablon {
+  display: flex;
+  justify-content: space-between;
+  padding: 25px 0;
+  color: #76808f;
+  font-size: 14px;
+  position: sticky;
+  top: 0;
+  background: var(--gri);
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+.current-rates-sablon > h1 {
+  padding-left: 15px;
+  width: 125px !important;
+}
+.single-coin-properties-title {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 15px;
+}
+.single-coin-prop-title {
+  width: 180px;
+  text-align: end;
+}
+
+.single-coin-properties {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 15px;
+}
+.single-coin-prop {
+  width: 180px;
+  text-align: center;
+  overflow: hidden;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.single-coin-prop:first-child {
+  text-align: end;
+}
+.single-currency {
+  padding: 15px 0;
+  border-bottom: 1px solid lightgrey;
+  display: flex;
+  justify-content: space-between;
+}
+.single-currency > h2 {
+  min-width: 140px;
+  word-break: break-all;
+  padding-left: 15px;
+  color: var(--color3);
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+.arrow-up {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid green;
+  margin-left: 5px;
+}
+.arrow-down {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  margin-left: 5px;
+  border-top: 5px solid #f00;
+}
+.loading {
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  text-decoration: uppercase;
+  font-size: 42px;
+  font-weight: bold;
+}
+.loading {
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media only screen and (max-width: 540px) {
+  #current-rates {
+    width: 100%;
+  }
+  .single-coin-prop-title {
+    width: 50px;
+  }
+  .single-coin-prop-title:last-child {
+    display: none;
+  }
+  .single-coin-properties-title {
+    width: 100%;
+    justify-content: space-evenly;
+    padding-right: 0;
+    padding-left: 50px;
+  }
+  .single-coin-prop-title {
+    text-align: center;
+  }
+  #current-rates > div.current-rates-sablon > div > p:nth-child(3) {
+    display: none;
+  }
+  .single-currency > h2 {
+    min-width: 20%;
+    font-size: 16px;
+  }
+  .single-coin-prop {
+    width: 50px;
+    overflow: visible;
+    font-size: 14px;
+  }
+  .single-coin-prop:last-child {
+    display: none;
+  }
+  .single-coin-prop:nth-child(3) {
+    display: none;
+  }
+  .single-coin-properties {
+    width: 100%;
+    justify-content: space-evenly;
+    padding-right: 0;
+    padding-left: 50px;
+  }
+}
