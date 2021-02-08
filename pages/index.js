@@ -5,11 +5,6 @@ import Head from "next/head";
 import { URL } from "../environment";
 
 function Home({ data }) {
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      (window.adsbygoogle = window.adsbygoogle || []).push({});
-    }
-  }, []);
   return (
     <div id="home">
       <Head>

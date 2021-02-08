@@ -15,10 +15,6 @@ const borsaAnlik = () => {
         setLoading(false);
       });
 
-    if (typeof window !== "undefined") {
-      (window.adsbygoogle = window.adsbygoogle || []).push({});
-    }
-
     return () => {
       return;
     };

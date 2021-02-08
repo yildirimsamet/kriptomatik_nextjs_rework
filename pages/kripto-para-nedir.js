@@ -1,12 +1,6 @@
 import Head from "next/head";
-import { useEffect } from "react";
 
 function WhatsCrypto() {
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      (window.adsbygoogle = window.adsbygoogle || []).push({});
-    }
-  }, []);
   return (
     <div id="whats-crypto">
       <Head>

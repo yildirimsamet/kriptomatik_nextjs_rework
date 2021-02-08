@@ -15,11 +15,6 @@ const newsSpesificPage = ({ data, lastPageNumber }) => {
       setLoading(false);
     }, 800);
   }, [currentPage]);
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      (window.adsbygoogle = window.adsbygoogle || []).push({});
-    }
-  }, []);
 
   return (
     <>

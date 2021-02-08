@@ -2,13 +2,8 @@ import Head from "next/head";
 import Post from "../../components/Post/Post";
 import fetch from "isomorphic-unfetch";
 import { URL } from "../../environment";
-import { useEffect } from "react";
+
 const newsSpesificUrl = ({ data }) => {
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      (window.adsbygoogle = window.adsbygoogle || []).push({});
-    }
-  }, []);
   return (
     <>
       <Head>

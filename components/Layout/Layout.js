@@ -3,7 +3,13 @@ import Head from "next/head";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import TopRates from "../TopRates/TopRates";
+import { useEffect } from "react";
 const Layout = ({ children }) => {
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+    }
+  }, []);
   return (
     <div className={styles.layout}>
       <Head>
