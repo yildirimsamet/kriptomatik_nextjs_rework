@@ -24,31 +24,26 @@ const newsSpesificUrl = ({ data }) => {
   );
 };
 
-// export async function getStaticPaths() {
-//   const res = await fetch(`${URL}/api/haberler/urls`);
-//   const urls = await res.json();
-//   return {
-//     paths: urls.map((url) => {
-//       return {
-//         params: { url: url.url },
-//       };
-//     }),
+export async function getStaticPaths() {
+  const res = await fetch(`${URL}/api/haberler/urls`);
+  const urls = await res.json();
+  return {
+    paths: urls.map((item) => {
+      return {
+        params: { url: item.url },
+      };
+    }),
 
-//     fallback: false,
-//   };
-// }
+    fallback: false,
+  };
+}
 
-export const getServerSideProps = async (ctx) => {
+export const getStaticProps = async (ctx) => {
   const res = await fetch(`${URL}/api/haberler/findbyurl/${ctx.params.url}`);
-
-  if (res.status === 200) {
-    const data = await res.json();
-    return {
-      props: { data: data[0] },
-    };
-  } else {
-    return;
-  }
+  const data = await res.json();
+  return {
+    props: { data: data[0] },
+  };
 };
 
 export default newsSpesificUrl;
