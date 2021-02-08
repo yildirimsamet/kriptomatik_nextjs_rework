@@ -19,11 +19,6 @@ const newsSpesificPage = ({ data, lastPageNumber }) => {
   return (
     <>
       <Head>
-        <script
-          data-ad-client="ca-pub-2743431608715099"
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-        />
         <title>Kriptomatik | Haberler</title>
         <meta charSet="UTF-8" />
         <meta

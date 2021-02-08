@@ -7,11 +7,6 @@ const newsSpesificUrl = ({ data }) => {
   return (
     <>
       <Head>
-        <script
-          data-ad-client="ca-pub-2743431608715099"
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-        />
         <title>{data.title}</title>
         <meta charSet="UTF-8" />
         <meta

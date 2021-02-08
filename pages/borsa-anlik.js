@@ -22,11 +22,6 @@ const borsaAnlik = () => {
   return (
     <>
       <Head>
-        <script
-          data-ad-client="ca-pub-2743431608715099"
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-        />
         <title>Kriptomatik | Anlık Coinler</title>
         <meta charSet="UTF-8" />
         <meta
@@ -42,13 +37,5 @@ const borsaAnlik = () => {
     </>
   );
 };
-// export const getServerSideProps = async () => {
-//   const res = await fetch("https://api.coinlore.net/api/tickers/");
-//   const data = await res.json();
-//   return {
-//     props: {
-//       coinss: data.data,
-//     },
-//   };
-// };
+
 export default borsaAnlik;

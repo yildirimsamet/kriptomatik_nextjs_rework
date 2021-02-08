@@ -4,11 +4,6 @@ function WhatsCrypto() {
   return (
     <div id="whats-crypto">
       <Head>
-        <script
-          data-ad-client="ca-pub-2743431608715099"
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-        />
         <title>Kriptomatik | Nedir</title>
         <meta charSet="UTF-8" />
         <meta
