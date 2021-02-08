@@ -97,6 +97,7 @@ export const getStaticProps = async (ctx) => {
       data,
       lastPageNumber,
     },
+    revalidate: 100,
   };
 };
 

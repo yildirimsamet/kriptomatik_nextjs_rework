@@ -39,6 +39,7 @@ export const getStaticProps = async (ctx) => {
   const data = await res.json();
   return {
     props: { data: data[0] },
+    revalidate: 100,
   };
 };
 
