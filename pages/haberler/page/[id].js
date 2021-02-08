@@ -15,6 +15,11 @@ const newsSpesificPage = ({ data, lastPageNumber }) => {
       setLoading(false);
     }, 800);
   }, [currentPage]);
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+    }
+  }, []);
 
   return (
     <>
@@ -23,7 +28,7 @@ const newsSpesificPage = ({ data, lastPageNumber }) => {
           data-ad-client="ca-pub-2743431608715099"
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-        ></script>
+        />
         <title>Kriptomatik | Haberler</title>
         <meta charSet="UTF-8" />
         <meta

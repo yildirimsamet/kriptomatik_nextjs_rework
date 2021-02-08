@@ -10,7 +10,7 @@ const Layout = ({ children }) => {
         <script
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-FG7H65CH27"
-        ></script>
+        />
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -20,7 +20,7 @@ const Layout = ({ children }) => {
         gtag("config", "G-FG7H65CH27");
     `,
           }}
-        ></script>
+        />
         <meta charSet="utf-8" />
         {/* <meta name="viewport" content="width=device-width, initial-scale=1" /> */}
         {/* <meta name="theme-color" content="#000000" /> */}

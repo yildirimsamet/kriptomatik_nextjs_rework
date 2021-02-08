@@ -2,7 +2,13 @@ import Head from "next/head";
 import Post from "../../components/Post/Post";
 import fetch from "isomorphic-unfetch";
 import { URL } from "../../environment";
+import { useEffect } from "react";
 const newsSpesificUrl = ({ data }) => {
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+    }
+  }, []);
   return (
     <>
       <Head>
@@ -10,7 +16,7 @@ const newsSpesificUrl = ({ data }) => {
           data-ad-client="ca-pub-2743431608715099"
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-        ></script>
+        />
         <title>{data.title}</title>
         <meta charSet="UTF-8" />
         <meta

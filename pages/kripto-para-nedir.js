@@ -1,6 +1,12 @@
 import Head from "next/head";
+import { useEffect } from "react";
 
 function WhatsCrypto() {
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+    }
+  }, []);
   return (
     <div id="whats-crypto">
       <Head>
@@ -8,7 +14,7 @@ function WhatsCrypto() {
           data-ad-client="ca-pub-2743431608715099"
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-        ></script>
+        />
         <title>Kriptomatik | Nedir</title>
         <meta charSet="UTF-8" />
         <meta
