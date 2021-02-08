@@ -30,7 +30,7 @@ export async function getStaticPaths() {
       };
     }),
 
-    fallback: false,
+    fallback: true,
   };
 }
 
@@ -39,7 +39,7 @@ export const getStaticProps = async (ctx) => {
   const data = await res.json();
   return {
     props: { data: data[0] },
-    revalidate: 100,
+    revalidate: 1,
   };
 };
 

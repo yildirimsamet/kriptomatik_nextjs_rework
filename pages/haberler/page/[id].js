@@ -81,7 +81,7 @@ export const getStaticPaths = async (ctx) => {
       };
     }),
 
-    fallback: false,
+    fallback: true,
   };
 };
 export const getStaticProps = async (ctx) => {
@@ -97,7 +97,7 @@ export const getStaticProps = async (ctx) => {
       data,
       lastPageNumber,
     },
-    revalidate: 100,
+    revalidate: 1,
   };
 };
 
