@@ -22,24 +22,21 @@ const Layout = ({ children }) => {
           }}
         ></script>
         <meta charSet="utf-8" />
-        {/* <link rel="icon" href="/favicon.ico" /> */}
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#000000" />
-
-        <meta charSet="utf-8" />
+        {/* <meta name="viewport" content="width=device-width, initial-scale=1" /> */}
+        {/* <meta name="theme-color" content="#000000" /> */}
+        {/* <meta charSet="utf-8" /> */}
         <link rel="icon" href="/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#000000" />
+        {/* <meta name="theme-color" content="#000000" /> */}
         <meta
           name="description"
           content="Kripto para
       olarak adlandırılan bu sanal paralar nedir, nasıl
       alınır, nasıl satılır, bitcoin ve altcoin
       nedir gibi sorulara sitemizden cevap bulabilirsiniz."
-          data-react-helmet="true"
         />
 
-        <link
+        {/* <link
           rel="apple-touch-icon"
           sizes="180x180"
           href="/apple-touch-icon.png"
@@ -59,7 +56,7 @@ const Layout = ({ children }) => {
         <link rel="manifest" href="/site.webmanifest" />
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
         <meta name="msapplication-TileColor" content="#da532c" />
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff" /> */}
 
         <link
           href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"

@@ -5,8 +5,6 @@ import Head from "next/head";
 import { URL } from "../environment";
 
 function Home({ data }) {
-  const allPosts = data;
-
   return (
     <div id="home">
       <Head>
@@ -18,7 +16,7 @@ function Home({ data }) {
       <div className="container dflex justify-content-between home-news-container">
         <div data-aos="fade-right" className="home-left-news">
           <div className="home-small-box">
-            {allPosts.map((item, index) => {
+            {data.map((item, index) => {
               if (index === 1) {
                 return (
                   <React.Fragment key={index}>
@@ -38,7 +36,7 @@ function Home({ data }) {
             })}
           </div>
           <div className="home-small-box">
-            {allPosts.map((item, index) => {
+            {data.map((item, index) => {
               if (index === 2) {
                 return (
                   <React.Fragment key={index}>
@@ -59,7 +57,7 @@ function Home({ data }) {
           </div>
         </div>
         <div data-aos="fade-down" className="home-mid-news">
-          {allPosts.map((item, index) => {
+          {data.map((item, index) => {
             if (index === 0) {
               return (
                 <React.Fragment key={index}>
@@ -80,7 +78,7 @@ function Home({ data }) {
         </div>
         <div data-aos="fade-left" className="home-right-news">
           <div className="home-small-box">
-            {allPosts.map((item, index) => {
+            {data.map((item, index) => {
               if (index === 3) {
                 return (
                   <React.Fragment key={index}>
@@ -100,7 +98,7 @@ function Home({ data }) {
             })}
           </div>
           <div className="home-small-box">
-            {allPosts.map((item, index) => {
+            {data.map((item, index) => {
               if (index === 4) {
                 return (
                   <React.Fragment key={index}>
