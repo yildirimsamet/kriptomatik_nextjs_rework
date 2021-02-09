@@ -29,8 +29,7 @@ export async function getStaticPaths() {
         params: { url: item.url },
       };
     }),
-
-    fallback: true,
+    fallback: false,
   };
 }
 
@@ -39,7 +38,6 @@ export const getStaticProps = async (ctx) => {
   const data = await res.json();
   return {
     props: { data: data[0] },
-    revalidate: 1,
   };
 };
 

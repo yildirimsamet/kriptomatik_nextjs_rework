@@ -69,7 +69,7 @@ export const getStaticPaths = async (ctx) => {
   let pagesArray = [];
   const res = await fetch(`${URL}/api/haberler/count`);
   const data = await res.json();
-  const lastPageNumber = (parseInt(data.count) / 10).toFixed(0);
+  const lastPageNumber = parseInt((parseInt(data.count) / 10).toFixed(0));
 
   for (let i = 1; i < lastPageNumber + 1; i++) {
     pagesArray.push(i);
@@ -81,7 +81,7 @@ export const getStaticPaths = async (ctx) => {
       };
     }),
 
-    fallback: true,
+    fallback: false,
   };
 };
 export const getStaticProps = async (ctx) => {
@@ -97,7 +97,6 @@ export const getStaticProps = async (ctx) => {
       data,
       lastPageNumber,
     },
-    revalidate: 1,
   };
 };
 
