@@ -15,73 +15,78 @@ const newsSpesificPage = ({ data, lastPageNumber }) => {
       setLoading(false);
     }, 800);
   }, [currentPage]);
-
-  return (
-    <>
-      <Head>
-        <title>Kriptomatik | Haberler</title>
-        <meta charSet="UTF-8" />
-        <meta
-          name="description"
-          content="Kripto para haberleri son dakika.Güncel kripto para haberlerini takip edebilirsiniz."
-        />
-        <meta
-          name="keywords"
-          content="kripto, kripto para borsası, sanal paralar, sanal para fiyatları, altcoin fiyatları, kripto para canlı, dijital para borsası, son dakika kripto para haberleri"
-        />
-      </Head>
-      <News data={data} />
-      <div className="container pagination-container">
-        <Link href={(parseInt(currentPage) + -1).toString()}>
-          <button
-            className="pagination-button"
-            disabled={currentPage <= 1 || loading === true ? true : false}
-            onClick={() => {
-              setLoading(true);
-              setCurrentPage(parseInt(currentPage) - 1);
-            }}
-          >
-            {"<<" + " " + (parseInt(currentPage) - 1)}
-          </button>
-        </Link>
-        <button className="pagination-button">{currentPage}</button>
-        <Link href={(parseInt(currentPage) + 1).toString()}>
-          <button
-            className="pagination-button"
-            disabled={
-              currentPage >= lastPageNumber - 1 || loading === true
-                ? true
-                : false
-            }
-            onClick={() => {
-              setLoading(true);
-              setCurrentPage(parseInt(currentPage) + 1);
-            }}
-          >
-            {parseInt(currentPage) + 1 + " " + ">>"}
-          </button>
-        </Link>
-      </div>
-    </>
-  );
+  if (data && lastPageNumber) {
+    return (
+      <>
+        <Head>
+          <title>Kriptomatik | Haberler</title>
+          <meta charSet="UTF-8" />
+          <meta
+            name="description"
+            content="Kripto para haberleri son dakika.Güncel kripto para haberlerini takip edebilirsiniz."
+          />
+          <meta
+            name="keywords"
+            content="kripto, kripto para borsası, sanal paralar, sanal para fiyatları, altcoin fiyatları, kripto para canlı, dijital para borsası, son dakika kripto para haberleri"
+          />
+        </Head>
+        <News data={data} />
+        <div className="container pagination-container">
+          <Link href={(parseInt(currentPage) + -1).toString()}>
+            <button
+              className="pagination-button"
+              disabled={currentPage <= 1 || loading === true ? true : false}
+              onClick={() => {
+                setLoading(true);
+                setCurrentPage(parseInt(currentPage) - 1);
+              }}
+            >
+              {"<<" + " " + (parseInt(currentPage) - 1)}
+            </button>
+          </Link>
+          <button className="pagination-button">{currentPage}</button>
+          <Link href={(parseInt(currentPage) + 1).toString()}>
+            <button
+              className="pagination-button"
+              disabled={
+                currentPage >= lastPageNumber - 1 || loading === true
+                  ? true
+                  : false
+              }
+              onClick={() => {
+                setLoading(true);
+                setCurrentPage(parseInt(currentPage) + 1);
+              }}
+            >
+              {parseInt(currentPage) + 1 + " " + ">>"}
+            </button>
+          </Link>
+        </div>
+      </>
+    );
+  } else {
+    return null;
+  }
 };
 export const getStaticPaths = async (ctx) => {
   let pagesArray = [];
   const res = await fetch(`${URL}/api/haberler/count`);
   const data = await res.json();
-  const lastPageNumber = parseInt((parseInt(data.count) / 10).toFixed(0));
+  const lastPageNumber = Math.floor(parseInt(parseInt(data.count) / 10));
 
-  for (let i = 1; i < lastPageNumber + 1; i++) {
+  for (let i = 1; i < lastPageNumber; i++) {
     pagesArray.push(i);
   }
-  return {
-    paths: pagesArray.map((page) => {
-      return {
-        params: { id: page.toString() },
-      };
-    }),
 
-    fallback: false,
+  const paths = pagesArray.map((page) => {
+    return {
+      params: { id: page.toString() },
+    };
+  });
+
+  return {
+    paths,
+    fallback: true,
   };
 };
 export const getStaticProps = async (ctx) => {
@@ -92,11 +97,13 @@ export const getStaticProps = async (ctx) => {
   const res2 = await fetch(`${URL}/api/haberler/count`);
   const count = await res2.json();
   const lastPageNumber = (parseInt(count.count) / 10).toFixed(0);
+
   return {
     props: {
       data,
       lastPageNumber,
     },
+    revalidate: 300,
   };
 };
 

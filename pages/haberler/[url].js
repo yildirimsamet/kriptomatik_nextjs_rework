@@ -4,20 +4,27 @@ import fetch from "isomorphic-unfetch";
 import { URL } from "../../environment";
 
 const newsSpesificUrl = ({ data }) => {
-  return (
-    <>
-      <Head>
-        <title>{data.title}</title>
-        <meta charSet="UTF-8" />
-        <meta
-          name="description"
-          content={data.content.substring(0, 99) + "..."}
-        />
-        <meta name="keywords" content="kripto para, sanal para, dijital para" />
-      </Head>
-      <Post post={data} />
-    </>
-  );
+  if (data) {
+    return (
+      <>
+        <Head>
+          <title>{data.title}</title>
+          <meta charSet="UTF-8" />
+          <meta
+            name="description"
+            content={data.content.substring(0, 99) + "..."}
+          />
+          <meta
+            name="keywords"
+            content="kripto para, sanal para, dijital para"
+          />
+        </Head>
+        <Post post={data} />
+      </>
+    );
+  } else {
+    return null;
+  }
 };
 
 export async function getStaticPaths() {
@@ -29,7 +36,7 @@ export async function getStaticPaths() {
         params: { url: item.url },
       };
     }),
-    fallback: false,
+    fallback: true,
   };
 }
 
