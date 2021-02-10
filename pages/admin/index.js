@@ -12,7 +12,7 @@ const AdminPage = () => {
   const [category, setCategory] = useState("Bitcoin");
   const [source, setSource] = useState("");
   const handleLogin = () => {
-    fetch("http://kriptomatik.herokuapp.com/api/admin", {
+    fetch("https://kriptomatik.herokuapp.com/api/admin", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -35,7 +35,7 @@ const AdminPage = () => {
       });
   };
   const handleAddPost = () => {
-    fetch("http://kriptomatik.herokuapp.com/api/admin/addpost", {
+    fetch("https://kriptomatik.herokuapp.com/api/admin/addpost", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
