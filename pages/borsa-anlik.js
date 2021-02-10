@@ -33,7 +33,11 @@ const borsaAnlik = () => {
           content="kripto, kripto para borsası, sanal paralar, sanal para fiyatları, altcoin fiyatları, kripto para canlı, dijital para borsası, son dakika kripto para haberleri"
         />
       </Head>
-      {loading ? <Loader /> : <CurrentRates coinss={coinss} />}
+      {loading ? (
+        <Loader text="YÜKLENİYOR..." />
+      ) : (
+        <CurrentRates coinss={coinss} />
+      )}
     </>
   );
 };
