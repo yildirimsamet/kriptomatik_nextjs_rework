@@ -7,6 +7,7 @@ function Post({ post }) {
         src={post.image}
         alt={post.title}
       />
+
       <p className="post-standalone-content">{post.content}</p>
       {post.source ? (
         <p className="post-standalone-content post-source">

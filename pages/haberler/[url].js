@@ -2,8 +2,25 @@ import Head from "next/head";
 import Post from "../../components/Post/Post";
 import fetch from "isomorphic-unfetch";
 import { URL } from "../../environment";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 const newsSpesificUrl = ({ data }) => {
+  const router = useRouter();
+  const { url } = router.query;
+  useEffect(() => {
+    try {
+      fetch("http://localhost:5000/api/findbyurlNupdatevisited", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ url }),
+      });
+    } catch (error) {
+      return;
+    }
+  }, [data]);
   if (data) {
     return (
       <>
@@ -23,7 +40,7 @@ const newsSpesificUrl = ({ data }) => {
       </>
     );
   } else {
-    return null;
+    return <h1>Sayfa bulunamadı</h1>;
   }
 };
 
@@ -43,6 +60,7 @@ export async function getStaticPaths() {
 export const getStaticProps = async (ctx) => {
   const res = await fetch(`${URL}/api/haberler/findbyurl/${ctx.params.url}`);
   const data = await res.json();
+
   return {
     props: { data: data[0] },
   };
