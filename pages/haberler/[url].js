@@ -24,6 +24,17 @@ const newsSpesificUrl = ({ data }) => {
         const myCoins = [btc, eth, doge];
         setCoins(myCoins);
       });
+    setInterval(() => {
+      fetch("https://www.paribu.com/ticker")
+        .then((res) => res.json())
+        .then((res) => {
+          const btc = { ...res.BTC_TL, rank: 1 };
+          const eth = { ...res.ETH_TL, rank: 2 };
+          const doge = { ...res.DOGE_TL, rank: 14 };
+          const myCoins = [btc, eth, doge];
+          setCoins(myCoins);
+        });
+    }, 6000);
 
     try {
       fetch(URL + "/api/findbyurlNupdatevisited", {

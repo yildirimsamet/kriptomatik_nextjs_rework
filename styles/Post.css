@@ -32,6 +32,9 @@
 }
 
 @media only screen and (max-width: 540px) {
+  #post-standalone {
+    width: 100%;
+  }
   .post-source {
     padding-left: 15px;
   }
@@ -49,5 +52,6 @@
   }
   .post-standalone-title {
     font-size: 28px;
+    height: auto;
   }
 }

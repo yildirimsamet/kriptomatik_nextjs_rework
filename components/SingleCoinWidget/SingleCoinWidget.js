@@ -48,7 +48,7 @@ const SingleCoinWidget = ({ coin, index, name }) => {
               >
                 ₺{coin.change}
               </strong>
-              <span className={styles.tl}>TL</span>
+              {/* <span className={styles.tl}>TL</span> */}
             </p>
           </div>
           <div className={styles.singleCoinWidgetBotBox}>
