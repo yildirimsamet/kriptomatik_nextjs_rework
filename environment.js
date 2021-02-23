@@ -1,4 +1,4 @@
 export const URL =
   process.env.NODE_ENV === "production"
-    ? "https://kriptomatik.org"
+    ? "https://www.kriptomatik.org"
     : "http://localhost:3000";
