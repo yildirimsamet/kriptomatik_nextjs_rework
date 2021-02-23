@@ -24,7 +24,7 @@ const newsSpesificUrl = ({ data }) => {
         const myCoins = [btc, eth, doge];
         setCoins(myCoins);
       });
-    setInterval(() => {
+    const myInterval = setInterval(() => {
       fetch("https://www.paribu.com/ticker")
         .then((res) => res.json())
         .then((res) => {
@@ -33,6 +33,7 @@ const newsSpesificUrl = ({ data }) => {
           const doge = { ...res.DOGE_TL, rank: 14 };
           const myCoins = [btc, eth, doge];
           setCoins(myCoins);
+          console.log("sa");
         });
     }, 6000);
 
@@ -47,6 +48,10 @@ const newsSpesificUrl = ({ data }) => {
     } catch (error) {
       return;
     }
+
+    return () => {
+      clearInterval(myInterval);
+    };
   }, [data]);
   if (data) {
     // data = JSON.parse(data);
