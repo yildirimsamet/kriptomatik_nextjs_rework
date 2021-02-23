@@ -34,6 +34,7 @@ const Layout = ({ children }) => {
       <div>
         <Navbar />
         <TopRates />
+
         <main>{children}</main>
       </div>
       <Footer />

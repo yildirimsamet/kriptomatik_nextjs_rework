@@ -1,0 +1,68 @@
+.singleCoinWidgetWrapper {
+  width: 100%;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  box-shadow: 2px 2px 5px rgba(185, 180, 180, 0.26);
+  margin-bottom: 15px;
+}
+.singleCoinWidgetTop,
+.singleCoinWidgetBot {
+  /* height: 50%; */
+  min-height: 65px;
+  max-height: 75px;
+  display: flex;
+}
+.singleCoinWidgetBotBox > p:first-child {
+  font-size: 12px;
+}
+.singleCoinWidgetWrapper p:last-child {
+  padding-top: 5px;
+}
+.singleCoinWidgetGreen {
+  color: rgb(41, 150, 41);
+  margin-left: 10px;
+}
+.singleCoinWidgetRed {
+  color: rgb(209, 44, 44);
+  margin-left: 10px;
+}
+
+.singleCoinWidgetBotBox {
+  width: 33.3%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.singleCoinWidgetBotBox:first-child {
+  border-top: 1px solid lightgray;
+  border-right: 1px solid lightgray;
+}
+.singleCoinWidgetBotBox:last-child {
+  border-left: 1px solid lightgray;
+  border-top: 1px solid lightgray;
+}
+.singleCoinWidgetBotBox:nth-child(2) {
+  border-top: 1px solid lightgray;
+}
+.singleCoinWidgetImg {
+  width: 50px;
+}
+.singleCoinWidgetTopImgDiv {
+  width: 33.3%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.singleCoinWidgetTopTitle {
+  width: 66.6%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.tl {
+  font-size: 12px;
+}

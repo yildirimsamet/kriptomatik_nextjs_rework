@@ -3,12 +3,26 @@ import Post from "../../components/Post/Post";
 import fetch from "isomorphic-unfetch";
 import { URL } from "../../environment";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import styles from "../../styles/Url.module.css";
+import SingleCoinWidget from "../../components/SingleCoinWidget/SingleCoinWidget";
+import InnerPostNews from "../../components/InnerPostNews/InnerPostNews";
 
 const newsSpesificUrl = ({ data }) => {
+  const [coins, setCoins] = useState([]);
   const router = useRouter();
   const { url } = router.query;
   useEffect(() => {
+    fetch("https://www.paribu.com/ticker")
+      .then((res) => res.json())
+      .then((res) => {
+        const btc = { ...res.BTC_TL, rank: 1 };
+        const eth = { ...res.ETH_TL, rank: 2 };
+        const doge = { ...res.DOGE_TL, rank: 14 };
+        const myCoins = [btc, eth, doge];
+        setCoins(myCoins);
+      });
+
     try {
       fetch("http://localhost:5000/api/findbyurlNupdatevisited", {
         method: "POST",
@@ -23,7 +37,7 @@ const newsSpesificUrl = ({ data }) => {
   }, [data]);
   if (data) {
     return (
-      <>
+      <div className={styles.urlWrapper + " container"}>
         <Head>
           <title>{data.title}</title>
           <meta charSet="UTF-8" />
@@ -37,7 +51,17 @@ const newsSpesificUrl = ({ data }) => {
           />
         </Head>
         <Post post={data} />
-      </>
+        <div className={styles.postAside}>
+          <SingleCoinWidget index={0} coin={coins[0]} name={"Bitcoin BTC"} />
+          <SingleCoinWidget index={1} coin={coins[1]} name={"Ethereum ETH"} />
+          <SingleCoinWidget
+            index={2}
+            coin={coins[2]}
+            name={"Dogecoin DOGE      "}
+          />
+          <InnerPostNews url={url} />
+        </div>
+      </div>
     );
   } else {
     return <h1>Sayfa bulunamadı</h1>;

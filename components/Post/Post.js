@@ -1,3 +1,4 @@
+import Link from "next/link";
 function Post({ post }) {
   return (
     <div className="container" id="post-standalone">
@@ -9,9 +10,15 @@ function Post({ post }) {
       />
 
       <p className="post-standalone-content">{post.content}</p>
+      <Link href="/haberler/page/1">
+        <a className="post-standalone-content post-source ">Haberler</a>
+      </Link>
       {post.source ? (
         <p className="post-standalone-content post-source">
-          Haber Kaynağı: <a href={post.source}>Kaynak siteye gidebilirsiniz.</a>
+          Haber Kaynağı:{" "}
+          <a rel="nofollow" target="_blank" href={post.source}>
+            Kaynak siteye gidebilirsiniz.
+          </a>
         </p>
       ) : null}
     </div>

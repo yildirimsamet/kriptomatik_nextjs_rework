@@ -1,0 +1,21 @@
+.innerSinglePostWrapper {
+  display: flex;
+  margin-bottom: 15px;
+}
+.innerSinglePostTitle {
+  font-size: 14px;
+}
+.innerSinglePostLink {
+  font-size: 12px;
+}
+.innerSinglePostContentWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-left: 15px;
+}
+
+.innerSinglePostImg {
+  width: 118px;
+  height: 82px;
+}

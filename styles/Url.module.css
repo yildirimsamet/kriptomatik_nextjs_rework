@@ -1,0 +1,9 @@
+.urlWrapper {
+  display: flex;
+}
+.postAside {
+  width: 30%;
+  margin-top: 115px;
+  display: flex;
+  flex-direction: column;
+}
