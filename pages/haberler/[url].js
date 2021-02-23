@@ -88,6 +88,7 @@ export async function getStaticPaths() {
 }
 
 export const getStaticProps = async (ctx) => {
+  dbConnect();
   const data = await News.find({ url: ctx.params.url });
 
   // const res = await fetch(`${URL}/api/haberler/findbyurl/${ctx.params.url}`);
