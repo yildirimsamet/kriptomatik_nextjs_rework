@@ -26,7 +26,7 @@ const newsSpesificUrl = ({ data }) => {
       });
 
     try {
-      fetch("http://localhost:3000/api/findbyurlNupdatevisited", {
+      fetch(URL + "/api/findbyurlNupdatevisited", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
