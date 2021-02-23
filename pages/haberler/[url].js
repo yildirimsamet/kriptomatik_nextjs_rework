@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import styles from "../../styles/Url.module.css";
 import SingleCoinWidget from "../../components/SingleCoinWidget/SingleCoinWidget";
 import InnerPostNews from "../../components/InnerPostNews/InnerPostNews";
+import dbConnect from "../../utils/dbConnect";
+import News from "../../models/News";
 
 const newsSpesificUrl = ({ data }) => {
   const [coins, setCoins] = useState([]);
@@ -24,7 +26,7 @@ const newsSpesificUrl = ({ data }) => {
       });
 
     try {
-      fetch("http://localhost:5000/api/findbyurlNupdatevisited", {
+      fetch("http://localhost:3000/api/findbyurlNupdatevisited", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -36,6 +38,7 @@ const newsSpesificUrl = ({ data }) => {
     }
   }, [data]);
   if (data) {
+    data = JSON.parse(data);
     return (
       <div className={styles.urlWrapper + " container"}>
         <Head>
@@ -69,8 +72,11 @@ const newsSpesificUrl = ({ data }) => {
 };
 
 export async function getStaticPaths() {
-  const res = await fetch(`${URL}/api/haberler/urls`);
-  const urls = await res.json();
+  dbConnect();
+  const urls = await News.find({}, { url: 1 });
+
+  // const res = await fetch(`${URL}/api/haberler/urls`);
+  // const urls = await res.json();
   return {
     paths: urls.map((item) => {
       return {
@@ -82,11 +88,13 @@ export async function getStaticPaths() {
 }
 
 export const getStaticProps = async (ctx) => {
-  const res = await fetch(`${URL}/api/haberler/findbyurl/${ctx.params.url}`);
-  const data = await res.json();
+  const data = await News.find({ url: ctx.params.url });
+
+  // const res = await fetch(`${URL}/api/haberler/findbyurl/${ctx.params.url}`);
+  // const data = await res.json();
 
   return {
-    props: { data: data[0] },
+    props: { data: JSON.stringify(data[0]) },
   };
 };
 

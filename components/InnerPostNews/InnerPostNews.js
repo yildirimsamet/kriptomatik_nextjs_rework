@@ -22,9 +22,9 @@ const InnerPostNews = ({ url }) => {
   return (
     <div className={styles.innerPostNewsWrapper}>
       <h2 className="my-3 text-center">Haberlere Göz Atın</h2>
-      {lastNews.map((item) => {
+      {lastNews.map((item, index) => {
         return (
-          <div className={styles.innerSinglePostWrapper}>
+          <div key={index} className={styles.innerSinglePostWrapper}>
             <div className={styles.innerSinglePostImgDiv}>
               <img
                 src={item.image}

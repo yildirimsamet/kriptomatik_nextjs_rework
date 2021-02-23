@@ -1,10 +1,12 @@
-import News from "../../../components/News/News";
+import NewsList from "../../../components/NewsList/NewsList";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Head from "next/head";
 import fetch from "isomorphic-unfetch";
 import { URL } from "../../../environment";
+import News from "../../../models/News";
+import dbConnect from "../../../utils/dbConnect";
 
 const newsSpesificPage = ({ data, lastPageNumber }) => {
   const router = useRouter();
@@ -16,6 +18,7 @@ const newsSpesificPage = ({ data, lastPageNumber }) => {
     }, 800);
   }, [currentPage]);
   if (data && lastPageNumber) {
+    data = JSON.parse(data);
     return (
       <>
         <Head>
@@ -30,7 +33,7 @@ const newsSpesificPage = ({ data, lastPageNumber }) => {
             content="kripto, kripto para borsası, sanal paralar, sanal para fiyatları, altcoin fiyatları, kripto para canlı, dijital para borsası, son dakika kripto para haberleri"
           />
         </Head>
-        <News data={data} />
+        <NewsList data={data} />
         <div className="container pagination-container">
           <Link href={(parseInt(currentPage) + -1).toString()}>
             <button
@@ -69,20 +72,34 @@ const newsSpesificPage = ({ data, lastPageNumber }) => {
   }
 };
 export const getStaticPaths = async (ctx) => {
+  dbConnect();
   let pagesArray = [];
-  const res = await fetch(`${URL}/api/haberler/count`);
-  const data = await res.json();
-  const lastPageNumber = Math.floor(parseInt(parseInt(data.count) / 10));
+  const count = await News.find({}).countDocuments();
 
+  const lastPageNumber = Math.floor((parseInt(count) / 10).toFixed(0));
   for (let i = 1; i < lastPageNumber; i++) {
     pagesArray.push(i);
   }
-
   const paths = pagesArray.map((page) => {
     return {
       params: { id: page.toString() },
     };
   });
+
+  // let pagesArray = [];
+  // const res = await fetch(`${URL}/api/haberler/count`);
+  // const data = await res.json();
+  // const lastPageNumber = Math.floor(parseInt(parseInt(data.count) / 10));
+
+  // for (let i = 1; i < lastPageNumber; i++) {
+  //   pagesArray.push(i);
+  // }
+
+  // const paths = pagesArray.map((page) => {
+  //   return {
+  //     params: { id: page.toString() },
+  //   };
+  // });
 
   return {
     paths,
@@ -90,17 +107,30 @@ export const getStaticPaths = async (ctx) => {
   };
 };
 export const getStaticProps = async (ctx) => {
-  const res = await fetch(
-    `${URL}/api/haberler/pagination/${(ctx.params.id - 1) * 10}`
-  );
-  const data = await res.json();
-  const res2 = await fetch(`${URL}/api/haberler/count`);
-  const count = await res2.json();
-  const lastPageNumber = (parseInt(count.count) / 10).toFixed(0);
+  dbConnect();
+  if (ctx.params.id == 0) {
+    ctx.params.id = 1;
+  }
+  const data = await News.find({})
+    .sort({ id: -1 })
+    .skip((parseInt(ctx.params.id) - 1) * 10)
+    .limit(10);
+
+  const count = await News.find({}).countDocuments();
+
+  const lastPageNumber = (parseInt(count) / 10).toFixed(0);
+
+  // const res = await fetch(
+  //   `${URL}/api/haberler/pagination/${(ctx.params.id - 1) * 10}`
+  // );
+  // const data = await res.json();
+  // const res2 = await fetch(`${URL}/api/haberler/count`);
+  // const count = await res2.json();
+  // const lastPageNumber = (parseInt(count.count) / 10).toFixed(0);
 
   return {
     props: {
-      data,
+      data: JSON.stringify(data),
       lastPageNumber,
     },
     revalidate: 300,

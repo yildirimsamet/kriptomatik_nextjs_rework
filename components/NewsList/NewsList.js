@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-function News({ data }) {
+function NewsList({ data }) {
   return (
     <div id="news">
       <div className="container news-container">
@@ -43,4 +43,4 @@ function News({ data }) {
   );
 }
 
-export default News;
+export default NewsList;
