@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import fetch from "isomorphic-unfetch";
 import Link from "next/link";
 import Head from "next/head";
 import { URL } from "../environment";
-import News from "../models/News";
-import dbConnect from "../utils/dbConnect";
+// import News from "../models/News";
+// import dbConnect from "../utils/dbConnect";
 function Home({ data }) {
-  data = JSON.parse(data);
+  // data = JSON.parse(data);
   return (
     <div id="home">
       <Head>
@@ -125,14 +125,14 @@ function Home({ data }) {
   );
 }
 export const getServerSideProps = async () => {
-  dbConnect();
-  const data = await News.find({}).sort({ id: -1 }).limit(5);
+  // dbConnect();
+  // const data = await News.find({}).sort({ id: -1 }).limit(5);
 
-  // const res = await fetch(`${URL}/api/haberler/firstfiveposts`);
-  // const data = await res.json();
+  const res = await fetch(`${URL}/api/haberler/firstfiveposts`);
+  const data = await res.json();
   return {
     props: {
-      data: JSON.stringify(data),
+      data: data,
     },
   };
 };
