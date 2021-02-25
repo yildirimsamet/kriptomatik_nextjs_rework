@@ -1,15 +1,16 @@
 #home {
-  padding-top: 25px;
+  padding: 25px 15px;
 }
 .home-small-box {
   width: 275px;
-  height: 275px;
+  height: 280px;
   position: relative;
 }
+
 .home-small-box > img {
   width: 275px;
-  height: 275px;
-  border-radius: 15px;
+  height: 280px;
+  border-radius: 5px;
 }
 .home-mid-mobile {
   display: none;
@@ -23,6 +24,7 @@
   background: rgba(0, 0, 0, 0.5);
   padding: 8px;
   border-radius: 20px;
+  transition: 0.25s ease all;
 }
 .home-small-box > a:hover {
   color: var(--color3);
@@ -31,11 +33,12 @@
   width: 570px;
   height: 570px;
   position: relative;
+  transition: 0.2s ease all;
 }
 .home-mid-news > img {
   width: 570px;
   height: 570px;
-  border-radius: 15px;
+  border-radius: 5px;
 }
 .home-mid-news > a {
   position: absolute;
@@ -46,6 +49,7 @@
   background: rgba(0, 0, 0, 0.5);
   padding: 10px 15px;
   border-radius: 20px;
+  transition: 0.25s ease all;
 }
 .home-mid-news > a:hover {
   color: var(--color3);
@@ -62,7 +66,7 @@
 }
 .home-news-container {
   margin-top: 25px;
-  padding: 0 !important;
+  padding: 25px 5px !important;
 }
 .home-twitter-container {
   flex-wrap: wrap;

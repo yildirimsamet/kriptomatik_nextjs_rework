@@ -19,3 +19,21 @@
   width: 118px;
   height: 82px;
 }
+.innerSinglePostContentWrapper > p {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.innerSinglePostContentWrapper > p > span > img {
+  width: 16px;
+  height: 16px;
+  margin-bottom: 2px;
+  margin-right: 3px;
+  opacity: 0.7;
+}
+.innerSinglePostContentWrapper > p > span {
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  opacity: 0.7;
+}

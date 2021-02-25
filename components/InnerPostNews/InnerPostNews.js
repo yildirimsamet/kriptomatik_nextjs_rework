@@ -32,12 +32,16 @@ const InnerPostNews = ({ url }) => {
                 className={styles.innerSinglePostImg}
               />
             </div>
+
             <div className={styles.innerSinglePostContentWrapper}>
               <h3 className={styles.innerSinglePostTitle}>{item.title}</h3>
               <p>
                 <Link href={"/haberler/" + item.url}>
                   <a className={styles.innerSinglePostLink}>Habere git</a>
                 </Link>
+                <span>
+                  <img src="/images/eye.png" alt="eye" /> {item.visitedCount}
+                </span>
               </p>
             </div>
           </div>

@@ -34,6 +34,7 @@
 @media only screen and (max-width: 540px) {
   #post-standalone {
     width: 100%;
+    padding: 0 !important;
   }
   .post-source {
     padding-left: 15px;

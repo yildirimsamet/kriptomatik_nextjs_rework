@@ -2,12 +2,10 @@
   width: 100%;
   border: 1px solid lightgray;
   border-radius: 4px;
-  box-shadow: 2px 2px 5px rgba(185, 180, 180, 0.26);
   margin-bottom: 15px;
 }
 .singleCoinWidgetTop,
 .singleCoinWidgetBot {
-  /* height: 50%; */
   min-height: 65px;
   max-height: 75px;
   display: flex;
