@@ -6,7 +6,44 @@ import InfiniteScroll from "react-infinite-scroll-component";
 function CurrentRates() {
   const [coins, setCoins] = useState([]);
   const [page, setPage] = useState(1);
-  // const [favCoins, setFavCoins] = useState([]);
+  const [favCoins, setFavCoins] = useState([]);
+  const [favCoinsData, setFavCoinsData] = useState([]);
+  const favCoinsFetch = async () => {
+    let query = "=";
+    favCoins.map((item) => (query += item + ","));
+
+    if (query.length > 2) {
+      fetch(
+        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=try&ids${query}`
+      )
+        .then((res) => res.json())
+        .then((res) => setFavCoinsData(res));
+    }
+  };
+
+  useEffect(() => {
+    favCoinsFetch();
+    const myInterval2 = setInterval(() => {
+      favCoinsFetch();
+    }, 5000);
+    if (favCoins.length <= 0) {
+      setFavCoinsData([]);
+    }
+    return () => {
+      clearInterval(myInterval2);
+    };
+  }, [favCoins]);
+  useEffect(() => {
+    if (!localStorage.getItem("favCoins")) {
+      localStorage.setItem("favCoins", JSON.stringify([]));
+    }
+    if (localStorage.getItem("favCoins")) {
+      setFavCoins(JSON.parse(localStorage.getItem("favCoins")));
+    }
+  }, []);
+  useEffect(() => {
+    localStorage.setItem("favCoins", JSON.stringify(favCoins));
+  }, [favCoins]);
 
   const firstLetterUpperCase = (text) => {
     const firstLetter = text[0].toUpperCase();
@@ -88,24 +125,89 @@ function CurrentRates() {
 
   return (
     <div id="current-rates">
-      {/* {favCoins.length > 0 ? (
-        <div>
-          <h1>Favori coinlerim</h1>
-          {favCoins.map((item, index) => (
-            <p key={index}>{item}</p>
-          ))}
+      {favCoinsData.length > 0 && (
+        <div
+          style={{
+            borderBottom: "2px solid orange",
+            paddingBottom: "5px",
+          }}
+        >
+          <div className="current-rates-sablon">
+            <h1>Kripto Para Canlı</h1>
+            <div className="single-coin-properties-title">
+              <p className="single-coin-prop-title">Fiyat</p>
+              <p className="single-coin-prop-title">24s Değişim</p>
+              <p className="single-coin-prop-title">Hacim</p>
+              <p className="single-coin-prop-title">Dolaşımdaki Arz</p>
+              <p className="single-coin-prop-title">7g Grafik</p>
+            </div>
+          </div>
+          <h2>Favori Coinlerim</h2>
+          {favCoinsData.map((coin) => {
+            return (
+              <div key={coin.symbol} className="single-currency fav-coins">
+                <span
+                  className="fav-icon"
+                  onClick={() => {
+                    let favArrayStorage = JSON.parse(
+                      localStorage.getItem("favCoins")
+                    );
+                    let indexOfthis = favArrayStorage.indexOf(coin.id);
+                    favArrayStorage.splice(indexOfthis, 1);
+                    setFavCoins(favArrayStorage);
+                    localStorage.setItem(
+                      "favCoins",
+                      JSON.stringify(favArrayStorage)
+                    );
+                  }}
+                >
+                  <img src="/images/star.png" alt="star" />
+                </span>
+                <h2>
+                  <LazyLoadImage alt="icon" src={coin.image} />
+                  {firstLetterUpperCase(coin.id)} <br /> ({coin.symbol}):
+                </h2>
+                <div className="single-coin-properties">
+                  <p className="single-coin-prop">
+                    ₺{formatMoney(coin.current_price)}
+                  </p>
+                  <p
+                    style={
+                      coin.market_cap_change_percentage_24h >= 0
+                        ? { color: "green" }
+                        : { color: "red" }
+                    }
+                    className="single-coin-prop"
+                  >
+                    {coin.market_cap_change_percentage_24h &&
+                      coin.market_cap_change_percentage_24h.toFixed(2)}
+                    %
+                    <span
+                      className={
+                        coin.market_cap_change_percentage_24h > 0
+                          ? "arrow-up"
+                          : "arrow-down"
+                      }
+                    ></span>
+                  </p>
+                  <p className="single-coin-prop">
+                    ₺{formatMoney(coin.total_volume)}
+                  </p>
+                  <p className="single-coin-prop">
+                    {formatMoney(coin.circulating_supply)}
+                  </p>
+                  <p className="single-coin-prop">
+                    <LazyLoadImage
+                      alt="grafik"
+                      src={grafikImgLink(coin.image)}
+                    />
+                  </p>
+                </div>
+              </div>
+            );
+          })}
         </div>
-      ) : null} */}
-      <div className="current-rates-sablon">
-        <h1>Kripto Para Canlı</h1>
-        <div className="single-coin-properties-title">
-          <p className="single-coin-prop-title">Fiyat</p>
-          <p className="single-coin-prop-title">24s Değişim</p>
-          <p className="single-coin-prop-title">Hacim</p>
-          <p className="single-coin-prop-title">Dolaşımdaki Arz</p>
-          <p className="single-coin-prop-title">7g Grafik</p>
-        </div>
-      </div>
+      )}
       <div>
         {/* {loading ? (
           <div className="loading">
@@ -115,6 +217,16 @@ function CurrentRates() {
           
         )} */}
         <div>
+          <div className="current-rates-sablon">
+            <h1>Kripto Para Canlı</h1>
+            <div className="single-coin-properties-title">
+              <p className="single-coin-prop-title">Fiyat</p>
+              <p className="single-coin-prop-title">24s Değişim</p>
+              <p className="single-coin-prop-title">Hacim</p>
+              <p className="single-coin-prop-title">Dolaşımdaki Arz</p>
+              <p className="single-coin-prop-title">7g Grafik</p>
+            </div>
+          </div>
           <InfiniteScroll
             dataLength={coins.length}
             next={fetchMoreData}
@@ -125,12 +237,11 @@ function CurrentRates() {
               return (
                 <div
                   key={coin.id}
-                  // onClick={() => {
-                  //   if (!favCoins.includes(coin.id)) {
-                  //     localStorage.setItem("favCoins", `[${coin.id}]`);
-                  //     setFavCoins([...favCoins, coin.id]);
-                  //   }
-                  // }}
+                  onClick={() => {
+                    if (!favCoins.includes(coin.id)) {
+                      setFavCoins([...favCoins, coin.id]);
+                    }
+                  }}
                   className="single-currency"
                 >
                   <h2>
