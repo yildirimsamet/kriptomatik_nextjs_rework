@@ -9,7 +9,7 @@ function Footer() {
           <p>
             <i className="fas fa-envelope"></i>
           </p>
-          <p>samety3503@gmail.com</p>
+          <p>yildirim.samet@outlook.com.tr</p>
         </div>
       </div>
     </div>

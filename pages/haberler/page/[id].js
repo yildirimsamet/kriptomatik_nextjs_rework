@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Head from "next/head";
 import fetch from "isomorphic-unfetch";
 import { URL } from "../../../environment";
+import AdBanner from "../../../components/AdBanner/AdBanner";
 // import News from "../../../models/News";
 // import dbConnect from "../../../utils/dbConnect";
 
@@ -13,6 +14,11 @@ const newsSpesificPage = ({ data, lastPageNumber }) => {
   const [currentPage, setCurrentPage] = useState(router.query.id);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
+    setTimeout(() => {
+      Array.from(document.getElementsByClassName("gizli")).forEach((item) => {
+        item.style.display = "none";
+      });
+    }, 15);
     setTimeout(() => {
       setLoading(false);
     }, 800);
@@ -26,13 +32,31 @@ const newsSpesificPage = ({ data, lastPageNumber }) => {
           <meta charSet="UTF-8" />
           <meta
             name="description"
-            content="Kripto para haberleri son dakika.Güncel kripto para haberlerini takip edebilirsiniz."
+            content="Kripto para haberleri son dakika. Güncel kripto para haberlerini takip edebilirsiniz."
           />
           <meta
             name="keywords"
             content="kripto, kripto para borsası, sanal paralar, sanal para fiyatları, altcoin fiyatları, kripto para canlı, dijital para borsası, son dakika kripto para haberleri"
           />
         </Head>
+        <div className="ads-left">
+          <AdBanner />
+        </div>
+        <div className="ads-right">
+          <AdBanner />
+        </div>
+        <div className="gizli">
+          <h1>
+            Kripto para haberleri son dakika. Güncel kripto para haberleri sanal
+            para, dijital para son dakika haber
+          </h1>
+          <p>
+            Kripto para haberleri son dakika. Güncel kripto para haberlerini
+            takip edebilirsiniz, kripto para borsası, sanal paralar, sanal para
+            fiyatları, altcoin fiyatları, kripto para canlı, dijital para
+            borsası, son dakika kripto para haberleri
+          </p>
+        </div>
         <NewsList data={data} />
         <div className="container pagination-container">
           <Link href={(parseInt(currentPage) + -1).toString()}>

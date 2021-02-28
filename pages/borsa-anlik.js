@@ -3,6 +3,7 @@ import CurrentRates from "../components/CurrentRates/CurrentRates";
 import fetch from "isomorphic-unfetch";
 import { useEffect, useState } from "react";
 import Loader from "../components/Loader/Loader";
+import AdBanner from "../components/AdBanner/AdBanner";
 
 const borsaAnlik = () => {
   // const [coinss, setCoinss] = useState([]);
@@ -19,20 +20,48 @@ const borsaAnlik = () => {
   //     return;
   //   };
   // }, []);
+  useEffect(() => {
+    fetch("http://localhost:5000/api/haberler/urls")
+      .then((res) => res.json())
+      .then((res) => {
+        res.forEach((item) => {
+          console.log(
+            `<url><loc>https://kriptomatik.org/haberler/${item.url}/</loc></url>`
+          );
+        });
+      });
+    setTimeout(() => {
+      Array.from(document.getElementsByClassName("gizli")).forEach((item) => {
+        item.style.display = "none";
+      });
+    }, 15);
+  }, []);
   return (
     <>
       <Head>
-        <title>Kriptomatik | Anlık Coinler</title>
+        <title>
+          Kripto para son durum, sanal para canlı borsa -Kriptomatik
+        </title>
         <meta charSet="UTF-8" />
         <meta
           name="description"
-          content="Canlı kripto para borsasını takip edebilirsiniz. Bitcoin, ethereum, ripple..."
-        />
-        <meta
-          name="keywords"
-          content="kripto, kripto para borsası, sanal paralar, sanal para fiyatları, altcoin fiyatları, kripto para canlı, dijital para borsası, son dakika kripto para haberleri"
+          content="Kripto para son durum, alt coin borsası, dijital para borsası, sanal para canlı
+          borsa"
         />
       </Head>
+      <div className="ads-left">
+        <AdBanner />
+      </div>
+      <div className="ads-right">
+        <AdBanner />
+      </div>
+      <h1 className="gizli">
+        Kripto para son durum, sanal para canlı borsa ve dijital para borsası
+      </h1>
+      <p className="gizli">
+        Kripto para son durum, alt coin borsası, dijital para borsası, sanal
+        para canlı borsa son dakika coin kripto para
+      </p>
       {/* {loading ? (
         <Loader text="YÜKLENİYOR..." />
       ) : (
