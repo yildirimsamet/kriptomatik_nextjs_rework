@@ -178,7 +178,9 @@
 @media only screen and (max-width: 540px) {
   .ads-left,
   .ads-right {
-    display: none;
+    pointer-events: none;
+
+    opacity: 0;
   }
   .home-title-container > h1 {
     font-size: 26px;
