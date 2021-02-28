@@ -25,12 +25,12 @@ function Home({ data }) {
           content="Güncel kripto koin haberleri alt coin haberleri, dijital para haberleri, sanal para canlı haberler."
         />
       </Head>
-      {/* <div className="ads-left">
+      <div className="ads-left">
         <AdBanner />
       </div>
       <div className="ads-right">
         <AdBanner />
-      </div> */}
+      </div>
       <div className="container home-title-container">
         <h1>
           Güncel kripto koin haberleri{" "}

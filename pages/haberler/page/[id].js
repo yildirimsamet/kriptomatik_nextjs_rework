@@ -39,12 +39,12 @@ const newsSpesificPage = ({ data, lastPageNumber }) => {
             content="kripto, kripto para borsası, sanal paralar, sanal para fiyatları, altcoin fiyatları, kripto para canlı, dijital para borsası, son dakika kripto para haberleri"
           />
         </Head>
-        <div className="ads-left">
+        {/* <div className="ads-left">
           <AdBanner />
         </div>
         <div className="ads-right">
           <AdBanner />
-        </div>
+        </div> */}
         <div className="gizli">
           <h1>
             Kripto para haberleri son dakika. Güncel kripto para haberleri sanal
