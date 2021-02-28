@@ -49,12 +49,7 @@ const borsaAnlik = () => {
           borsa"
         />
       </Head>
-      <div className="ads-left">
-        <AdBanner />
-      </div>
-      <div className="ads-right">
-        <AdBanner />
-      </div>
+
       <h1 className="gizli">
         Kripto para son durum, sanal para canlı borsa ve dijital para borsası
       </h1>

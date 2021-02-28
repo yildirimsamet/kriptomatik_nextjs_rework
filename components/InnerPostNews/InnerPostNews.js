@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import styles from "./InnerPostNews.module.css";
 import { URL } from "../../environment";
 import Link from "next/link";
+import AdNewsRecommed from "../AdNewsRecommend/AdNewsRecommed";
 
 const InnerPostNews = ({ url }) => {
   const [lastNews, setLastNews] = useState([]);
@@ -23,6 +24,37 @@ const InnerPostNews = ({ url }) => {
     <div className={styles.innerPostNewsWrapper}>
       <h2 className="my-3 text-center">Haberlere Göz Atın</h2>
       {lastNews.map((item, index) => {
+        if (index === 2) {
+          return (
+            <>
+              <div key={index} className="adnewsrecommend">
+                <AdNewsRecommed />
+              </div>
+              <div key={index} className={styles.innerSinglePostWrapper}>
+                <div className={styles.innerSinglePostImgDiv}>
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className={styles.innerSinglePostImg}
+                  />
+                </div>
+
+                <div className={styles.innerSinglePostContentWrapper}>
+                  <h3 className={styles.innerSinglePostTitle}>{item.title}</h3>
+                  <p>
+                    <Link href={"/haberler/" + item.url}>
+                      <a className={styles.innerSinglePostLink}>Habere git</a>
+                    </Link>
+                    <span>
+                      <img src="/images/eye.png" alt="eye" />{" "}
+                      {item.visitedCount}
+                    </span>
+                  </p>
+                </div>
+              </div>
+            </>
+          );
+        }
         return (
           <div key={index} className={styles.innerSinglePostWrapper}>
             <div className={styles.innerSinglePostImgDiv}>
