@@ -3,7 +3,7 @@ import styles from "./InnerPostNews.module.css";
 import { URL } from "../../environment";
 import Link from "next/link";
 import AdNewsRecommed from "../AdNewsRecommend/AdNewsRecommed";
-
+import React from "react";
 const InnerPostNews = ({ url }) => {
   const [lastNews, setLastNews] = useState([]);
 
@@ -26,11 +26,11 @@ const InnerPostNews = ({ url }) => {
       {lastNews.map((item, index) => {
         if (index === 2) {
           return (
-            <>
-              <div key={index} className="adnewsrecommend">
+            <React.Fragment key={Math.random() * 300}>
+              <div className="adnewsrecommend">
                 <AdNewsRecommed />
               </div>
-              <div key={index} className={styles.innerSinglePostWrapper}>
+              <div className={styles.innerSinglePostWrapper}>
                 <div className={styles.innerSinglePostImgDiv}>
                   <img
                     src={item.image}
@@ -52,31 +52,33 @@ const InnerPostNews = ({ url }) => {
                   </p>
                 </div>
               </div>
-            </>
+            </React.Fragment>
           );
         }
         return (
-          <div key={index} className={styles.innerSinglePostWrapper}>
-            <div className={styles.innerSinglePostImgDiv}>
-              <img
-                src={item.image}
-                alt={item.title}
-                className={styles.innerSinglePostImg}
-              />
-            </div>
+          <React.Fragment key={Math.random() * 300}>
+            <div className={styles.innerSinglePostWrapper}>
+              <div className={styles.innerSinglePostImgDiv}>
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className={styles.innerSinglePostImg}
+                />
+              </div>
 
-            <div className={styles.innerSinglePostContentWrapper}>
-              <h3 className={styles.innerSinglePostTitle}>{item.title}</h3>
-              <p>
-                <Link href={"/haberler/" + item.url}>
-                  <a className={styles.innerSinglePostLink}>Habere git</a>
-                </Link>
-                <span>
-                  <img src="/images/eye.png" alt="eye" /> {item.visitedCount}
-                </span>
-              </p>
+              <div className={styles.innerSinglePostContentWrapper}>
+                <h3 className={styles.innerSinglePostTitle}>{item.title}</h3>
+                <p>
+                  <Link href={"/haberler/" + item.url}>
+                    <a className={styles.innerSinglePostLink}>Habere git</a>
+                  </Link>
+                  <span>
+                    <img src="/images/eye.png" alt="eye" /> {item.visitedCount}
+                  </span>
+                </p>
+              </div>
             </div>
-          </div>
+          </React.Fragment>
         );
       })}
     </div>
