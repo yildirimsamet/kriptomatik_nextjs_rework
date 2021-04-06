@@ -54,7 +54,11 @@ const SingleCoinWidget = ({ coin, index, name }) => {
           <div className={styles.singleCoinWidgetBotBox}>
             <p>VOLUME</p>
             <p>
-              <strong>{coin.volume.toFixed(0)}</strong>
+              <strong>
+                {typeof coin.volume === "number"
+                  ? coin.volume.toFixed(0)
+                  : null}
+              </strong>
               <span className={styles.tl}>
                 {name.substring(name.length - 4, name.length)}
               </span>
