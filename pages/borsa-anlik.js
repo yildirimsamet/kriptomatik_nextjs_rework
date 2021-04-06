@@ -1,25 +1,9 @@
 import Head from "next/head";
 import CurrentRates from "../components/CurrentRates/CurrentRates";
 import fetch from "isomorphic-unfetch";
-import { useEffect, useState } from "react";
-import Loader from "../components/Loader/Loader";
-import AdBanner from "../components/AdBanner/AdBanner";
+import { useEffect } from "react";
 
 const borsaAnlik = () => {
-  // const [coinss, setCoinss] = useState([]);
-  // const [loading, setLoading] = useState(true);
-  // useEffect(() => {
-  //   fetch("https://api.coinlore.net/api/tickers/")
-  //     .then((res) => res.json())
-  //     .then((res) => {
-  //       setCoinss(res.data);
-  //       setLoading(false);
-  //     });
-
-  //   return () => {
-  //     return;
-  //   };
-  // }, []);
   useEffect(() => {
     fetch("http://localhost:5000/api/haberler/urls")
       .then((res) => res.json())
@@ -30,11 +14,6 @@ const borsaAnlik = () => {
           );
         });
       });
-    setTimeout(() => {
-      Array.from(document.getElementsByClassName("gizli")).forEach((item) => {
-        item.style.display = "none";
-      });
-    }, 15);
   }, []);
   return (
     <>
@@ -49,18 +28,6 @@ const borsaAnlik = () => {
           borsa"
         />
       </Head>
-
-      <h1 className="gizli">
-        Kripto para son durum, sanal para canlı borsa ve dijital para borsası
-      </h1>
-      <p className="gizli">
-        Kripto para son durum, alt coin borsası, dijital para borsası, sanal
-        para canlı borsa son dakika coin kripto para
-      </p>
-      {/* {loading ? (
-        <Loader text="YÜKLENİYOR..." />
-      ) : (
-        )} */}
       <CurrentRates />
     </>
   );

@@ -1,4 +1,5 @@
 import Link from "next/link";
+
 function Post({ post }) {
   return (
     <div className="container" id="post-standalone">
@@ -9,7 +10,12 @@ function Post({ post }) {
         alt={post.title}
       />
 
-      <p className="post-standalone-content">{post.content}</p>
+      <p
+        className="post-standalone-content"
+        dangerouslySetInnerHTML={{
+          __html: `'First &middot; Second'`,
+        }}
+      ></p>
       <Link href="/haberler/page/1">
         <a className="post-standalone-content post-source ">Haberler</a>
       </Link>

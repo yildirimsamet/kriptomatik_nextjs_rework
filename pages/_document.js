@@ -6,7 +6,7 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <Head>{/* Global Site Tag (gtag.js) - Google Analytics */}</Head>
+        <Head></Head>
         <head>
           <script
             data-ad-client="ca-pub-2743431608715099"

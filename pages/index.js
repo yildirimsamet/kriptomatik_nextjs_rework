@@ -6,14 +6,6 @@ import { URL } from "../environment";
 import AdBanner from "../components/AdBanner/AdBanner";
 
 function Home({ data }) {
-  useEffect(() => {
-    setTimeout(() => {
-      Array.from(document.getElementsByClassName("gizli")).forEach((item) => {
-        item.style.display = "none";
-      });
-    }, 15);
-  }, []);
-
   return (
     <div id="home">
       <Head>
@@ -26,19 +18,7 @@ function Home({ data }) {
         />
       </Head>
 
-      <div className="container home-title-container">
-        <h1>
-          Güncel kripto koin haberleri{" "}
-          <span className="gizli">
-            alt coin haberleri, dijital para haberleri, sanal para canlı
-            haberler
-          </span>
-        </h1>
-        <p className="gizli">
-          Güncel kripto koin haberlerini ve altcoin borsasını takip
-          edebilirsiniz.
-        </p>
-      </div>
+      <div className="container home-title-container"></div>
       <div className="container dflex justify-content-between home-news-container">
         <div data-aos="fade-right" className="home-left-news">
           <div className="home-small-box">
